@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' ">
+  <link rel="icon" type="image/x-icon" href="/assets/RO_Roadsign_1C.ico">
+  <title>Orderix</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <h1>Orderix</h1>
+  We are using Node.js <span id="node-version"></span>,
+  Chromium <span id="chrome-version"></span>,
+  and Electron <span id="electron-version"></span>
+  <form action="" id="form" >
+    <div style="height: 400px;">
+      <select name="" id="filter-select">
+        <option value="">This Month</option>
+        <option value="">This Year</option>
+        <option value="">Today</option>
+      </select>
+    </div>
+    <input type="file" name="" id="file">
+    <input type="submit" />
+  </form>
+  <script >
+    const path = require("path");
+    const os = require("os");
+    const {ipcRenderer} = require("electron")
+
+    const select = document.getElementById("delete");
+    const form = document.getElementById("form");
+    const file = document.getElementById("file");
+
+    
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let image = file.files[0].name;
+      ipcRenderer.send('image:minimize', {
+        image
+      })
+    })
+        // function addValue(e) {
+        //     // e.preventDefault();
+        //     // console.log(e);
+        //     // document.write(document.getElementsByClassName("filter-select")[0])
+        //     document.getElementById("filter-select").innerHTML = "sdsd"
+        // }
+        // addValue()
+  </script>
+</body>
+
+</html>
